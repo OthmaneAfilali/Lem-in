@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"strconv"
 )
 
 var startRoom, endRoom *string
@@ -126,9 +127,13 @@ func isDublicate(succesfulPaths [][]string) [][]string {
 }
 
 func moveAnts(foundPaths [][]string) {
-	for paths := range foundPaths {
-		for stepsPerAnt := range antsNumber {
-			
+	ants, err := strconv.Atoi(antsNumber)
+	errorCheck("Error converting ants number", err)
+	for _, path := range foundPaths {
+		for i := 0; i < ants; i++ {
+			for rooms := range path {
+				fmt.Printf("L%v-%v ", i+1, rooms)
+			}
 		}
 	}
 }
